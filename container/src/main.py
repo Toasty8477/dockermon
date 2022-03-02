@@ -19,11 +19,11 @@ def connect():
     client.connect(broker, port)
     return client
 
-try:
-    connect()
-except:
-    print('Something Went Wrong')
 while True:
+    try:
+        connect()
+    except:
+        print('Something Went Wrong')
     messages = 0
     status = {}
     for container in docker.containers.list(all):
@@ -35,3 +35,4 @@ while True:
     print(message)
     print("Status Sent!")
     sleep(900)
+    client.disconnect()
